@@ -1,0 +1,10 @@
+background_image = background.png
+object_one = first, 100, 100
+object_two = second, 200, 200
+object_three = third, 300, 300
+object_four = fourth, 400, 400
+obejct_five = fifth, 500, 500
+edge_min = -3818, -472
+edge_max = 3818, 472
+camera_window = 800, 600
+camera_drift = 200
