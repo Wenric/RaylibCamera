@@ -32,7 +32,7 @@ int main() {
     Texture background = LoadTexture("back.png");
 
 
-    camera_mode current_mode = locked_mode;
+    camera_mode current_mode = free_mode;
 
     // define edge boundaries
     float EDGE_X[2], EDGE_Y[2];
@@ -48,6 +48,8 @@ int main() {
 
         switch (current_mode) {
             case free_mode:
+                camera_view.zoom = 1.0f;
+
                 if (IsCursorOnScreen()) {
                     mouse_pos = GetScreenToWorld2D(GetMousePosition(), camera_view);
 
@@ -70,11 +72,13 @@ int main() {
                 }
 
                 if (IsMouseButtonPressed(0)) {
-                    
+                    mouse_pos = GetScreenToWorld2D(GetMousePosition(), camera_view);
                     current_mode = locked_mode;
                 }
+                camera_view.target.x = Clamp(camera_view.target.x, EDGE_X[0], EDGE_X[1]);
+                camera_view.target.y = Clamp(camera_view.target.y, EDGE_Y[0], EDGE_Y[1]);
                 break;
-
+                
             case locked_mode:
                 camera_view.target = mouse_pos;
                 camera_view.zoom = 1.5f;
@@ -84,17 +88,19 @@ int main() {
                 if (IsMouseButtonPressed(1)) {
                     camera_view.target = mouse_pos;
                     camera_view.zoom = 1.5f;
-                    current_mode = free_mode;
+                    current_mode = free_mode;   
                 }
+
+                camera_view.target.x = Clamp(camera_view.target.x, EDGE_X[0] - WINDOW_WIDTH/8, EDGE_X[1] + WINDOW_WIDTH/8);
+                camera_view.target.y = Clamp(camera_view.target.y, EDGE_Y[0] - WINDOW_HEIGHT/8, EDGE_Y[1] + WINDOW_WIDTH/8);
                 break;
 
             default:
+                break;
 
         }
 
         //clamp to edges
-        camera_view.target.x = Clamp(camera_view.target.x, EDGE_X[0], EDGE_X[1]);
-        camera_view.target.y = Clamp(camera_view.target.y, EDGE_Y[0], EDGE_Y[1]);
 
         
         // invis box follows camera movement offset to center
