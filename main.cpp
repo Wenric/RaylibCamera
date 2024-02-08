@@ -91,8 +91,8 @@ int main() {
                     current_mode = free_mode;   
                 }
 
-                camera_view.target.x = Clamp(camera_view.target.x, EDGE_X[0] - WINDOW_WIDTH/8, EDGE_X[1] + WINDOW_WIDTH/8);
-                camera_view.target.y = Clamp(camera_view.target.y, EDGE_Y[0] - WINDOW_HEIGHT/8, EDGE_Y[1] + WINDOW_WIDTH/8);
+                camera_view.target.x = Clamp(camera_view.target.x, EDGE_X[0] - WINDOW_WIDTH/6, EDGE_X[1] + WINDOW_WIDTH/6);
+                camera_view.target.y = Clamp(camera_view.target.y, EDGE_Y[0] - WINDOW_HEIGHT/6, EDGE_Y[1] + WINDOW_WIDTH/6);
                 break;
 
             default:
@@ -112,7 +112,9 @@ int main() {
         ClearBackground(WHITE);
         BeginMode2D(camera_view);
         DrawTexture(background, -background_width/2, -background_height/2, WHITE);
-        DrawRectangleLinesEx(invis_box, 3, RED);
+        if (current_mode == free_mode) {
+            DrawRectangleLinesEx(invis_box, 3, RED);
+        }
         EndMode2D();
         EndDrawing();
     }
