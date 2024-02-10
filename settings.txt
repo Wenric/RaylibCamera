@@ -1,9 +1,9 @@
 background_image = back.png
-object_one = 0, {100, 100}, {0, 0}, 128
-object_two = 0, {200, 200}, {0, 0}, 128
-object_three = 0, {300, 300}, {0, 0}, 128
-object_four = 0, {400, 400}, {0, 0}, 128
-obejct_five = 0, {500, 500}, {0, 0}, 128
+object_one = first 100 100 0 0 128
+object_two = second 200 200 0 0 128
+object_three = third 300 300 0 0 128
+object_four = fourth 400 400 0 0 128
+obejct_five = fifth 500 500 0 0 128
 edge_min = -3818, -472
 edge_max = 3818, 472
 camera_window = 800, 600

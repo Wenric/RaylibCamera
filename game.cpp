@@ -2,6 +2,7 @@
 #include <raymath.h>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <cstring>
 
@@ -56,19 +57,23 @@ public:
         while (std::getline(settings_file, line)) {
         
             size_t eq = line.find("=");
-            std::string clean = line.substr(eq + 1);
+            std::string clean = line.substr(eq + 2);
 
             // Check if the current line number is the one you want to process
             
             if (lineNumber == 1) {
                 // Process the line as needed for background image
-                sscanf(clean.c_str(), "%s", background_name);
+                background_name = clean;
 
             }
 
             if (lineNumber >= 2 && lineNumber <= 6) {
                 // Process the line as needed for objects
-                sscanf(clean.c_str(), "%s, {%f, %f}, {%f, %f}, %f", spawn[obj_count].name, spawn[obj_count].position.x, spawn[obj_count].position.y, spawn[obj_count].size.x, spawn[obj_count].size.y, spawn[obj_count].opacity);
+                //sscanf(clean.c_str(), "%s, {%f, %f}, {%f, %f}, %f", spawn[obj_count].name, spawn[obj_count].position.x, spawn[obj_count].position.y, spawn[obj_count].size.x, spawn[obj_count].size.y, spawn[obj_count].opacity);
+                
+                std::istringstream iss(clean);
+                iss >> spawn[obj_count].name >> spawn[obj_count].position.x >> spawn[obj_count].position.y >> spawn[obj_count].size.x >> spawn[obj_count].size.y >> spawn[obj_count].opacity;
+                std::cout << spawn[obj_count].name << std::endl;
                 obj_count++;
 
             }
