@@ -129,11 +129,4 @@ public:
     }
 };
 
-//global variable
-extern int score;
-Font custom_font;
-float button_width = 400;
-float button_height = 100;
-int header_size = 48;
-int body_size = 32;
 #endif

@@ -9,15 +9,12 @@
 class win : public Scene {
     
 public:
-    void Begin() override {
-        custom_font = LoadFontEx("Geist.otf", 64, 0, 0.5);
-        SetTextureFilter(custom_font.texture, TEXTURE_FILTER_BILINEAR);
-    }
+    void Begin() override {}
     void Update() override {}
     void End() override {}
     void Draw() override {
         // Draw "Game Over!" in the middle-top of the screen
-        DrawTextEx(custom_font, "Faggots", {(WINDOW_WIDTH - MeasureText("Faggots", body_size)) / 2, 100}, body_size, 1, RED);
+        DrawText("You Win(?)", WINDOW_WIDTH / 2 - MeasureText("You Win(?)", 25), WINDOW_HEIGHT / 2 - MeasureText("You Win(?)", 25), 50, RED);
 
         //draw text box
     }
